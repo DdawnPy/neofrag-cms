@@ -45,7 +45,7 @@ class Router extends Core
 				$segments = array_offset_left($segments);
 			}
 			
-			if ($this->config->admin_url && !$this->user('admin'))
+			if ($this->config->admin_url && !$this->access->admin())
 			{
 				$this->config->admin_url = FALSE;
 				
@@ -77,6 +77,11 @@ class Router extends Core
 		if (!$module = $this->load->module = $this->load->module(!in_string('_', $segments[0]) ? str_replace('-', '_', $segments[0]) : 'error'))
 		{
 			return $this->_load($segments[0] != 'pages' ? array_merge(array($this->config->admin_url ? 'admin' : 'pages'), $segments) : array('error'));
+		}
+		
+		if ($module->name != 'error' && $module->name != 'admin' && $this->config->admin_url && !$module->is_authorized())
+		{
+			return $this->_load(array('error', 'unauthorized'));
 		}
 		
 		array_shift($segments);

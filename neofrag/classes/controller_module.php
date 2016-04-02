@@ -47,6 +47,11 @@ abstract class Controller_Module extends Controller
 
 		return $this;
 	}
+
+	public function is_authorized($action)
+	{
+		return $this->access($this->load->object->name, $action);
+	}
 }
 
 /*
