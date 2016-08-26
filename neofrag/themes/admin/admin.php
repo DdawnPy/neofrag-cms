@@ -31,17 +31,17 @@ class t_admin extends Theme
 
 	public function load()
 	{
-		$content_submenu = array();
+		$content_submenu = [];
 		
 		foreach ($this->addons->get_modules() as $module)
 		{
 			if ($module->is_administrable() && $module->is_authorized())
 			{
-				$content_submenu[] = array(
+				$content_submenu[] = [
 					'title'  => $module->get_title(),
 					'icon'   => $this->template->parse($module->icon),
 					'url'    => 'admin/'.$module->name.'.html'
-				);
+				];
 			}
 		}
 
@@ -58,129 +58,129 @@ class t_admin extends Theme
 				->js('metisMenu.min')
 				->js('neofrag.navigation')
 				->js('slideout.min')
-				->add_data('menu', array(
-					array(
+				->add_data('menu', [
+					[
 						'title' => $this('dashboard'),
 						'icon'  => 'fa-dashboard',
 						'url'   => 'admin.html'
-					),
-					array(
+					],
+					[
 						'title' => $this('settings'),
 						'icon'  => 'fa-cogs',
-						'url'   => array(
-							array(
+						'url'   => [
+							[
 								'title'  => $this('configuration'),
 								'icon'   => 'fa-wrench',
 								'url'    => 'admin/settings.html',
 								'access' => function(){
 									return $this->user('admin');
 								}
-							),
-							array(
+							],
+							[
 								'title'  => $this('maintenance'),
 								'icon'   => 'fa-power-off',
 								'url'    => 'admin/settings/maintenance.html',
 								'access' => function(){
 									return $this->user('admin');
 								}
-							),
-							array(
+							],
+							[
 								'title'  => $this('addons'),
 								'icon'   => 'fa-puzzle-piece',
 								'url'    => 'admin/addons.html',
 								'access' => function(){
 									return $this->user('admin');
 								}
-							)
-						)
-					),
-					array(
+							]
+						]
+					],
+					[
 						'title' => $this('users'),
 						'icon'  => 'fa-users',
-						'url'   => array(
-							array(
+						'url'   => [
+							[
 								'title'  => $this('members'),
 								'icon'   => 'fa-users',
 								'url'    => 'admin/members.html',
 								'access' => function(){
 									return $this->user('admin');
 								}
-							),
-							array(
+							],
+							[
 								'title'  => $this('sessions'),
 								'icon'   => 'fa-globe',
 								'url'    => 'admin/members/sessions.html',
 								'access' => function(){
 									return $this->user('admin');
 								}
-							),
+							],
 							/*array(
 								'title' => 'Profil',
 								'icon'  => 'fa-user',
 								'url'   => 'admin/user.html'
 							),*/
-							array(
+							[
 								'title'  => $this('permissions'),
 								'icon'   => 'fa-unlock-alt',
 								'url'    => 'admin/access.html',
 								'access' => function(){
 									return $this->user('admin');
 								}
-							),
+							],
 							/*array(
 								'title' => $this('ban'),
 								'icon'  => 'fa-bomb',
 								'url'   => 'admin/members/ban.html'
 							)*/
-						)
-					),
-					array(
+						]
+					],
+					[
 						'title' => $this('content'),
 						'icon'  => 'fa-edit',
 						'url'   => $content_submenu
-					),
-					array(
+					],
+					[
 						'title' => $this('design'),
 						'icon'  => 'fa-paint-brush',
-						'url'   => array(
-							array(
+						'url'   => [
+							[
 								'title'  => $this('themes'),
 								'icon'   => 'fa-tint',
 								'url'    => 'admin/addons.html#themes',
 								'access' => function(){
 									return $this->user('admin');
 								}
-							),
-							array(
+							],
+							[
 								'title' => $this('liveditor'),
 								'icon'  => 'fa-desktop',
 								'url'   => 'live-editor.html',
 								'access' => function(){
 									return $this->user('admin');
 								}
-							)
-						)
-					),
-					array(
+							]
+						]
+					],
+					[
 						'title' => $this('security'),
 						'icon'  => 'fa-shield',
-						'url'   => array(
-							array(
+						'url'   => [
+							[
 								'title' => $this('notifications'),
 								'icon'  => 'fa-flag',
 								'url'   => 'admin/notifications.html',
 								'access' => function(){
 									return $this->user('admin');
 								}
-							),
-							array(
+							],
+							[
 								'title' => $this('database'),
 								'icon'  => 'fa-database',
 								'url'   => 'admin/database.html',
 								'access' => function(){
 									return $this->user('admin');
 								}
-							),
+							],
 							/*array(
 								'title' => 'Rapport d\'erreurs',
 								'icon'  => 'fa-exclamation-triangle',
@@ -191,16 +191,16 @@ class t_admin extends Theme
 								'icon'  => 'icons/exclamation-shield.png',
 								'url'   => 'admin/logs.html'
 							),*/
-							array(
+							[
 								'title' => $this('server'),
 								'icon'  => 'fa-cogs',
 								'url'   => 'admin/phpinfo.html',
 								'access' => function(){
 									return $this->user('admin');
 								}
-							)
-						)
-					),
+							]
+						]
+					],
 					/*array(
 						'title' => 'Statistiques',
 						'icon'  => 'fa-signal',
@@ -217,15 +217,15 @@ class t_admin extends Theme
 							)
 						)
 					),*/
-					array(
+					[
 						'title' => $this('about'),
 						'icon'  => 'fa-info',
 						'url'   => 'admin/about.html',
 						'access' => function(){
 							return $this->user('admin');
 						}
-					)
-				));
+					]
+				]);
 
 		return parent::load();
 	}
